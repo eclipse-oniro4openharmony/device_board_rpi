@@ -1,6 +1,6 @@
 # 【开发板名称】树莓派4b
 
-**![树莓派](pictures/rpi4.png)**
+**![树莓派](../picture/rpi4.png)**
 
 **版本特性**
 
@@ -13,12 +13,12 @@
 安装命令如下：
 
 ```
-sudo apt update&&sudo apt install -y default-jre default-jdk gcc-arm-linux-gnueabihf binutils git git-lfs gnupg flex bison gperf build-essential zip curl zlib1g-dev libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip ruby m4 wget bc python python3 libssl-dev mtools gnutls-bin device-tree-compiler libtinfo5
+sudo apt update&&sudo apt install -y git git-lfs curl python3 python3-pip default-jdk device-tree-compiler cpio bison ccache ruby flex libtinfo5 xorg-dev libssl-dev bc dosfstools mtools
 ```
 
-如果使用docker还需要加上以下内容：
+如果使用docker可以使用一下命令：
 ```
-apt install -y nodejs python3-pip dosfstools
+apt update&&apt-get install -y git git-lfs curl python3 python3-pip default-jdk device-tree-compiler cpio bison ccache ruby flex libtinfo5 xorg-dev libssl-dev bc dosfstools mtools
 ```
 
 **说明：** 
@@ -99,7 +99,7 @@ out/rpi4/packages/phone/images/ 目录下。
 **1、连接串口**
 
 串口引脚图如下：
-**![串口引脚图](pictures/rpi4ck.png)**
+**![串口引脚图](../picture/rpi4ck.png)**
 1、连接图中6、8、10三个引脚。
 2、打开Xshell，新建会话，在连接的协议中选择SERIAL。
 3、转到串口标签，选择正确的端口号，波特率115200，完成后即可连接。
@@ -120,6 +120,7 @@ hdc连接：插入网线获取到设备ip地址，在电脑命令行中输入hdc
 
 **四、联系**
 
+[Dy](https://gitee.com/d1124)
 [Diemit](https://gitee.com/diemit)
 
 

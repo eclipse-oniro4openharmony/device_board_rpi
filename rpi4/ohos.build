@@ -3,7 +3,8 @@
     "parts": {
         "raspberrypi_products": {
             "module_list": [
-                "//device/board/${product_company}/${device_name}:rpi4_group"
+                "//device/board/${product_company}/${device_name}:rpi4_group",
+                "//vendor/iscas/${product_name}/bluetooth:libbt_vendor"
             ],
             "test_list": [
                 "//device/board/${product_company}/rpi4/image:rpi_image"
