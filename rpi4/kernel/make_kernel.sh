@@ -1,5 +1,6 @@
 #!/bin/bash
 # Copyright (c) 2022 Diemit <598757652@qq.com>
+# Copyright (c) 2024 Institute of Software, Chinese Academy of Sciences. 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -26,11 +27,13 @@ export KERNEL_OBJ_TMP_PATH=${PROJECT_ROOT}/out/kernel/OBJ/${KERNEL_VERSION}
 export KERNEL_IMAGE_FILE=${KERNEL_OBJ_TMP_PATH}/arch/${KERNEL_ARCH}/boot/${KERNEL_IMAGE}
 
 LINUX_KERNEL_MAKEFILE=${PROJECT_ROOT}/device/board/iscas/rpi4/kernel/make_kernel.mk
+LINUX_dtb_MAKEFILE=${PROJECT_ROOT}/device/board/iscas/rpi4/kernel/make_dtb.mk
 
 rm -f ${KERNEL_IMAGE_FILE}
 
 export KBUILD_OUTPUT=${KERNEL_OBJ_TMP_PATH}
 
+make -f ${LINUX_dtb_MAKEFILE}
 make -f ${LINUX_KERNEL_MAKEFILE}
 
 if [ -f ${KERNEL_IMAGE_FILE} ];then

@@ -1,4 +1,5 @@
 #!/bin/bash
+# Copyright (c) 2024 Institute of Software, Chinese Academy of Sciences. 
 # Copyright (c) 2022 Diemit <598757652@qq.com>
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,4 +28,4 @@ KERNEL_SRC_TMP_PATH=${OUT_DIR}/kernel/src_tmp/${KERNEL_VERSION}
 KERNEL_IMAGE_FILE=${KERNEL_SRC_TMP_PATH}/arch/${KERNEL_ARCH}/boot/${KERNEL_IMAGE}
 
 bash check_patch.sh ${PROJECT_ROOT} ${KERNEL_VERSION}
-bash make_kernel.sh ${PROJECT_ROOT} ${PRODUCT_PATH} ${KERNEL_ARCH} ${KERNEL_VERSION} ${KERNEL_IMAGE} ${DEFCONFIG_FILE} ${OUT_PKG_DIR}
+bash make_kernel.sh ${PROJECT_ROOT} ${PRODUCT_PATH} ${KERNEL_ARCH} ${KERNEL_VERSION} ${KERNEL_IMAGE} ${DEFCONFIG_FILE} ${OUT_PKG_DIR} enable_ramdisk

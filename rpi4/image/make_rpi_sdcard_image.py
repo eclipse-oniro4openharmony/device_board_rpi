@@ -1,4 +1,18 @@
 #!/usr/bin/env python3
+
+# Copyright (c) 2024 Institute of Software, Chinese Academy of Sciences.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import sys
 import re
 import os
@@ -57,10 +71,7 @@ def make_raspberry_image(output, userdata_size, partition_images):
     partition_sizes = tuple((os.stat(img).st_size+1023)//1024 for img in partition_images)
     p1, p2, p3, p4 = partition_sizes
     output_tmp = output + '.tmp'
-
-    ptpath=os.path.abspath(os.path.dirname(__file__))
-
-
+    ptpath="../../out/rpi4/clang_x64/utils/utils"
     ptgen_cmd = F'{ptpath}/ptgen -o {output_tmp} -l 1024 -s 63 -h 256 -a 1 -t 0c -p {p1} -t 83 -p {p2} -p {p3} -p {p4}'
     ptgen_result = subprocess.run(ptgen_cmd, shell=True, check=True, stdout=subprocess.PIPE).stdout
     ptgen_result = tuple(int(n) for n in ptgen_result.decode().strip().split('\n'))
