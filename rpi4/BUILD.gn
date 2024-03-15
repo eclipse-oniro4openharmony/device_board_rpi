@@ -18,12 +18,8 @@ group("rpi4_group") {
   deps = [
     "cfg:init_configs",
     "distributedhardware:distributedhardware",
-    # "kernel:rpi4_kernel",
     "//device/soc/broadcom/bcm2711/hardware:hardware_group",
-    # "firmware:firmware",
-    # "bluetooth:libbt_vendor",
-    # "modules:modules_group",
-    # "test:test",
+    "//vendor/iscas/rpi4/bluetooth:libbt_vendor",
     "//vendor/${product_company}/rpi4/sample:sample_group"
   ]
 }

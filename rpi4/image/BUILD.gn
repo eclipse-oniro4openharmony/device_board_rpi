@@ -36,7 +36,7 @@ action("rpi_image") {
     "--output",
     rebase_path("$root_build_dir/packages/phone/images/rpi_image.img"),
     "--userdata",
-    "2000M",
+    "1000M",
     rebase_path("$root_build_dir/packages/phone/images/boot.img"),
     rebase_path("$root_build_dir/packages/phone/images/system.img"),
     rebase_path("$root_build_dir/packages/phone/images/vendor.img"),
