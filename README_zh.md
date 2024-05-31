@@ -1,4 +1,4 @@
-# device_board_iscas
+# device_board_rpi
 
 ## 简介
 
@@ -24,7 +24,7 @@
 ## 目录
 
 ```
-device/board/iscas
+device/board/rpi
 ├── rpi3                                # 树莓派3b开发板
 ├── rpi4                                # 树莓派4b开发板
 └── ...

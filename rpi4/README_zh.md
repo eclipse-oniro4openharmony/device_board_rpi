@@ -22,7 +22,7 @@ apt update&&apt-get install -y git git-lfs curl python3 python3-pip default-jdk 
 ```
 
 **说明：** 
-以上安装命令适用于Ubuntu20.04，其他版本请根据安装包名称采用对应的安装命令。
+以上安装命令适用于Ubuntu20.04，其它版本请根据安装包名称采用对应的安装命令。
 
 **2、获取标准系统源码**
 
