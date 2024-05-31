@@ -119,10 +119,7 @@ ohos_shared_library("camera_host_vdi_impl_1.0") {
   deps = [
     "$camera_path/../usb_camera/device_manager:usb_camera_device_manager",
     "$camera_path/../usb_camera/metadata_manager:usb_camera_metadata_manager",
-    # "$camera_path/../usb_camera/pipeline_core:usb_camera_pipeline_core",
     "$camera_path/../usb_camera/buffer_manager:usb_camera_buffer_manager",
-    # "$board_camera_path/device_manager:camera_device_manager",
-    # "$board_camera_path/metadata_manager:camera_metadata_manager",
     "$board_camera_path/pipeline_core:camera_pipeline_core",
     "$camera_path/utils:camera_utils",
   ]

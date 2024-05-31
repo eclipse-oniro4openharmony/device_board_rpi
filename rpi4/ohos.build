@@ -4,13 +4,12 @@
         "device_rpi4": {
             "module_list": [
                 "//device/board/rpi/${device_name}:rpi4_group",
-                "//device/board/rpi/common/camera:camera_host_vdi_impl",
-                "//device/board/rpi/demo:usb_camera"
+                "//device/board/rpi/common/camera:camera_host_vdi_impl"
             ],
             "test_list": [
-                "//device/board/rpi/common:rpi_image",
                 "//device/board/rpi/system_patch:system_patch",
-                "//device/board/rpi/demo:usb_camera"
+                "//device/board/rpi/common:rpi_image"
+                
             ]
         }
     }

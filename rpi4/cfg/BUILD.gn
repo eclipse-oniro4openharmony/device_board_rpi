@@ -12,13 +12,6 @@
 # limitations under the License.
 import("//build/ohos.gni")
 
-ohos_prebuilt_etc("init.without_two_stages.cfg") {
-  source = "init.without_two_stages.cfg"
-  part_name = "device_rpi4" 
-  install_images = [ vendor_base_dir ]
-  install_enable = true
-}
-
 ohos_prebuilt_etc("init.rpi4.cfg") {
   source = "init.rpi4.cfg"
   part_name = "device_rpi4"

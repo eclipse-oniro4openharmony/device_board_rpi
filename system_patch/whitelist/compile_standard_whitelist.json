@@ -1,7 +1,6 @@
 {
     "bundle_subsystem_error": [
         "device/board/hihope/rk3568/ohos.build",
-        "device/board/rpi/rpi4/ohos.build",
         "device/board/hisilicon/hispark_taurus/linux/ohos.build",
         "device/board/hisilicon/hispark_taurus/ohos.build",
         "device/qemu/arm_virt/linux/ohos.build",
@@ -42,9 +41,6 @@
                 "//device/soc/broadcom/common:ptgen",
                 "//third_party/mesa3d/ohos:mesa3d_build",
                 "//foundation/graphic/graphic_2d/frameworks/surface:surface",
-                "//device/board/rpi/demo:usb_camera",
-                "//device/board/rpi/common/camera:camera_host_vdi_impl_1.0",
-                "//device/board/rpi/common/camera/pipeline_core:camera_pipeline_core",
 
         "//foundation/arkui/napi/sample/native_module_systemtest:systemtestnapi",
         "//ide/tools/previewer:lite_previewer",
@@ -159,13 +155,6 @@
         "//device/soc/broadcom/common:ptgen",
         "//third_party/mesa3d/ohos:mesa3d_build",
         "//foundation/graphic/graphic_2d/frameworks/surface:surface",
-        "//device/board/rpi/demo:usb_camera",
-        "//device/board/rpi/common/camera:camera_host_vdi_impl_1.0",
-        "//device/board/rpi/common/camera/pipeline_core:camera_pipeline_core",
-        "//device/board/rpi/common/camera/driver_adapter:camera_v4l2_adapter",
-        "//device/board/rpi/common/camera/device_manager:camera_device_manager",
-        "//device/board/rpi/common/camera/metadata_manager:camera_metadata_manager",
-        
 
         "//drivers/hdf_core/adapter/build/test_common:libhdf_test_common",
         "//drivers/hdf_core/adapter/uhdf/manager:hdf_core",
@@ -408,11 +397,6 @@
         "//build/rust/tests/test_staticlib_crate:simple_printer_staticlib",
         "//drivers/hdf_core/adapter/uhdf/manager:hdf_core",
         "//drivers/hdf_core/adapter/uhdf/platform:hdf_platform",
-
-        "//device/board/rpi/common/camera/driver_adapter:camera_v4l2_adapter",
-        "//device/board/rpi/common/camera/device_manager:camera_device_manager",
-        "//device/board/rpi/common/camera/metadata_manager:camera_metadata_manager",
-
         "//drivers/peripheral/codec/test/demo/adapter:codec_hdi_adapter_decode",
         "//drivers/peripheral/codec/test/demo/adapter:codec_hdi_adapter_encode",
         "//drivers/peripheral/codec/test/demo/v1.0:codec_decode_test_async",
@@ -499,11 +483,6 @@
         "//device/soc/broadcom/bcm2711/hardware/display:libhigbm_vendor",
         "//third_party/mesa3d/ohos:mesa3d_build",
         "//foundation/graphic/graphic_2d:libsurface",
-        "//device/board/rpi/demo:usb_camera",
-        "//device/board/rpi/common/camera:camera_host_vdi_impl_1.0",
-        "//device/board/rpi/common/camera/device_manager:camera_device_manager",
-        "//device/board/rpi/common/camera/metadata_manager:camera_metadata_manager",
-        "//device/board/rpi/common/camera/pipeline_core:camera_pipeline_core",
 
         "//drivers/hdf_core/adapter/uhdf/platform:hdf_platform",
         "//drivers/peripheral/input/hal:hdi_input",
@@ -556,10 +535,6 @@
         "//third_party/mesa3d/ohos:mesa3d_build",
         "//foundation/graphic/graphic_2d:libsurface",
         "//foundation/graphic/graphic_2d/frameworks/surface:surface",
-        "//device/board/rpi/common/camera/pipeline_core:camera_pipeline_core",
-        "//device/board/rpi/common/camera/driver_adapter:camera_v4l2_adapter",
-        "//device/board/rpi/common/camera/device_manager:camera_device_manager",
-        "//device/board/rpi/common/camera/metadata_manager:camera_metadata_manager",
 
         "//device/board/hihope/rk3568/camera/vdi_impl/v4l2/pipeline_core:camera_pipeline_core",
         "//device/soc/rockchip/rk3568/hardware/display:display_composer_vendor",
