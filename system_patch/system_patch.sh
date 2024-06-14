@@ -14,10 +14,10 @@
 
 set -e
 
-PROJECT_ROOT=$1
+PROJECT_ROOT=$(pwd)/
 PATCH_SRC_PATH=${PROJECT_ROOT}device/board/rpi/system_patch
 
-#chmod
+# #chmod
 chmod 777 ${PROJECT_ROOT}device/board/rpi/common/build_bootimg.py
 chmod 777 ${PROJECT_ROOT}device/board/rpi/common/make_rpi_sdcard_image.py
 chmod 777 ${PROJECT_ROOT}device/board/rpi/common/kernel/build_kernel.sh
