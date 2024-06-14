@@ -33,7 +33,7 @@ device/board/rpi
 ## 使用说明
 
 树莓派4b参考：
-- [树莓派4b](https://gitee.com/openharmony-sig/device_board_rpi/blob/OpenHarmony-4.0-Release/rpi4/README_zh.md)
+- [树莓派4b](https://gitee.com/openharmony-sig/device_board_rpi/blob/OpenHarmony-4.1-Release/rpi4/README_zh.md)
 
 
 ## 相关仓

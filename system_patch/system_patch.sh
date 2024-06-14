@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2022 Diemit <598757652@qq.com>
+# Copyright (c) 2024 Institute of Software, Chinese Academy of Sciences. 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -31,6 +31,5 @@ chmod 777 ${PROJECT_ROOT}device/board/rpi/common/kernel/make_kernel_64.mk
 cp -arfL ${PATCH_SRC_PATH}/whitelist/compile_standard_whitelist.json ${PROJECT_ROOT}build/compile_standard_whitelist.json
 
 #graphic_2d
-cp -arfL ${PATCH_SRC_PATH}/graphic_2d/rs_base_render_engine.cpp ${PROJECT_ROOT}foundation/graphic/graphic_2d/rosen/modules/render_service/core/pipeline/rs_base_render_engine.cpp
 cp -arfL ${PATCH_SRC_PATH}/graphic_2d/rs_draw_cmd.cpp ${PROJECT_ROOT}foundation/graphic/graphic_2d/rosen/modules/render_service_base/src/pipeline/rs_draw_cmd.cpp
 cp -arfL ${PATCH_SRC_PATH}/graphic_2d/surface_image.cpp ${PROJECT_ROOT}foundation/graphic/graphic_2d/frameworks/surfaceimage/src/surface_image.cpp

@@ -57,7 +57,7 @@ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 | sudo tee /usr/local
 注意：repo init不能在系统根目录下执行
 
 ```
-repo init -u https://gitee.com/zhengsenwen/manifest.git -b master -m devboard_rpi4b_4.0.xml --no-repo-verify
+repo init -u https://gitee.com/zhengsenwen/manifest.git -b master -m devboard_rpi4b_4.1.xml --no-repo-verify
 
 repo sync -c
 
