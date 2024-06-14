@@ -14,21 +14,21 @@
 
 set -e
 
-PROJECT_ROOT=../../../../
+PROJECT_ROOT=$(pwd)/
 PATCH_SRC_PATH=${PROJECT_ROOT}device/board/rpi/system_patch
 
-#chmod
-chmod 777 ../common/build_bootimg.py
-chmod 777 ../common/make_rpi_sdcard_image.py
-chmod 777 ../common/kernel/build_kernel.sh
-chmod 777 ../common/kernel/check_patch.sh
-chmod 777 ../common/kernel/make_kernel.sh
-chmod 777 ../common/kernel/make_dtb.mk
-chmod 777 ../common/kernel/make_kernel_32.mk
-chmod 777 ../common/kernel/make_kernel_64.mk
+# #chmod
+chmod 777 ${PROJECT_ROOT}device/board/rpi/common/build_bootimg.py
+chmod 777 ${PROJECT_ROOT}device/board/rpi/common/make_rpi_sdcard_image.py
+chmod 777 ${PROJECT_ROOT}device/board/rpi/common/kernel/build_kernel.sh
+chmod 777 ${PROJECT_ROOT}device/board/rpi/common/kernel/check_patch.sh
+chmod 777 ${PROJECT_ROOT}device/board/rpi/common/kernel/make_kernel.sh
+chmod 777 ${PROJECT_ROOT}device/board/rpi/common/kernel/make_dtb.mk
+chmod 777 ${PROJECT_ROOT}device/board/rpi/common/kernel/make_kernel_32.mk
+chmod 777 ${PROJECT_ROOT}device/board/rpi/common/kernel/make_kernel_64.mk
 
 #whitelist
-cp -arfL ${PATCH_SRC_PATH}/whitelist/compile_standard_whitelist.json ${PROJECT_ROOT}/build/compile_standard_whitelist.json
+cp -arfL ${PATCH_SRC_PATH}/whitelist/compile_standard_whitelist.json ${PROJECT_ROOT}build/compile_standard_whitelist.json
 
 #graphic_2d
 cp -arfL ${PATCH_SRC_PATH}/graphic_2d/rs_draw_cmd.cpp ${PROJECT_ROOT}foundation/graphic/graphic_2d/rosen/modules/render_service_base/src/pipeline/rs_draw_cmd.cpp
