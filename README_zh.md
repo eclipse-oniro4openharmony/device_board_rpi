@@ -25,18 +25,14 @@
 
 ```
 device/board/iscas
-├── rpi3                                # 树莓派3b开发板
 ├── rpi4                                # 树莓派4b开发板
 └── ...
 ```
 
 ## 使用说明
 
-树莓派3b参考：
-- [树莓派3b](https://gitee.com/openharmony-sig/device_board_iscas/blob/OpenHarmony-3.2-Beta4/rpi3/README_zh.md)
-
 树莓派4b参考：
-- [树莓派4b](https://gitee.com/openharmony-sig/device_board_iscas/blob/OpenHarmony-3.2-Beta4/rpi4/README_zh.md)
+- [树莓派4b](https://gitee.com/openharmony-sig/device_board_rpi/blob/OpenHarmony-3.2-Release/rpi4/README_zh.md)
 
 
 ## 相关仓
