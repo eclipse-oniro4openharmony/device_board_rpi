@@ -19,12 +19,5 @@ group("rpi4_group") {
     "cfg:init_configs",
     "../common/distributedhardware:distributedhardware",
     "//device/soc/broadcom/bcm2711/hardware:hardware_group",
-    # "//device/board/rpi/common/camera:chipset_build",
-    # "//device/board/rpi/common/camera:camera_host_vdi_impl_1.0",
-    # "//device/board/rpi/common/camerat:camera_board_vdi_impl"
-    # "//device/soc/broadcom/bcm2711/hardware/display:display_buffer_model",        #2024/04/07����
-    # "//device/soc/broadcom/bcm2711/hardware/display:display_composer_model",      #2024/04/07����
-    # "//vendor/iscas/common/bluetooth:libbt_vendor",
-    # "//vendor/iscas/common/sample:sample_group"
   ]
 }
