@@ -12,56 +12,40 @@
 # limitations under the License.
 import("//build/ohos.gni")
 
-ohos_prebuilt_etc("init.without_two_stages.cfg") {
-  source = "init.without_two_stages.cfg"
-  part_name = "raspberrypi_products"
-  install_images = [ system_base_dir ]
-  install_enable = true
-}
-
 ohos_prebuilt_etc("init.rpi4.cfg") {
   source = "init.rpi4.cfg"
-  part_name = "raspberrypi_products"
+  part_name = "device_rpi4"
   install_images = [ vendor_base_dir ]
   install_enable = true
 }
 
 ohos_prebuilt_etc("init.rpi4.usb.cfg") {
   source = "init.rpi4.usb.cfg"
-  part_name = "raspberrypi_products"
+  part_name = "device_rpi4"
   install_images = [ vendor_base_dir ]
   install_enable = true
 }
 
 ohos_prebuilt_etc("fstab.rpi4") {
   source = "fstab.rpi4"
-  part_name = "raspberrypi_products"
+  part_name = "device_rpi4"
   install_images = [ vendor_base_dir ]
   install_enable = true
 }
 
 ohos_prebuilt_etc("fstab.required") {
   source = "fstab.required"
-  part_name = "raspberrypi_products"
-  install_images = [ ramdisk_base_dir, system_base_dir ]
+  part_name = "device_rpi4"
+  install_images = [ ramdisk_base_dir ]
   install_enable = true
 }
 
-ohos_prebuilt_executable("init.modprobe.sh") {
-  install_enable = true
-  source = "init.modprobe.sh"
-  module_install_dir = "etc/init"
-  install_images = [ vendor_base_dir ]
-  part_name = "raspberrypi_products"
-}
 
 group("init_configs") {
   deps = [
     ":fstab.required",
     ":fstab.rpi4",
-    ":init.without_two_stages.cfg",
     ":init.rpi4.cfg",
     ":init.rpi4.usb.cfg",
-    ":init.modprobe.sh",
   ]
 }

@@ -5,24 +5,34 @@
 **版本特性**
 
 - 适配GPU
+- 适配usb相机
 
 **一、搭建开发环境**
 
 **1、安装依赖工具**
 
-安装命令如下：
+Linux虚拟机或真机安装命令如下：
 
 ```
 sudo apt update&&sudo apt install -y git git-lfs curl python3 python3-pip default-jdk device-tree-compiler cpio bison ccache ruby flex libtinfo5 xorg-dev libssl-dev bc dosfstools mtools
 ```
 
-如果使用docker可以使用一下命令：
+推荐使用docker：
+拉取以下镜像（基于ubuntu20.04）即可跳转到repo init继续操作
+```
+docker run -it d1124/ohosenv:pu
+```
+推荐使用-v命令挂载：
+```
+docker run -v rpi:/ohos -it d1124/ohosenv:pu
+```
+如果不使用以上镜像则需要安装以下依赖：
 ```
 apt update&&apt-get install -y git git-lfs curl python3 python3-pip default-jdk device-tree-compiler cpio bison ccache ruby flex libtinfo5 xorg-dev libssl-dev bc dosfstools mtools
 ```
 
 **说明：** 
-以上安装命令适用于Ubuntu20.04，其他版本请根据安装包名称采用对应的安装命令。
+以上安装命令适用于Ubuntu20.04，其它版本请根据安装包名称采用对应的安装命令。
 
 **2、获取标准系统源码**
 
@@ -44,9 +54,10 @@ curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 | sudo tee /usr/local
 **获取源码操作步骤**
 
 通过repo + https 下载。
+注意：repo init不能在系统根目录下执行
 
 ```
-repo init -u https://gitee.com/zhengsenwen/manifest.git -b master -m devboard_rpi4b_3.2.xml --no-repo-verify
+repo init -u https://gitee.com/zhengsenwen/manifest.git -b master -m devboard_rpi4b_4.0.xml --no-repo-verify
 
 repo sync -c
 
@@ -69,11 +80,16 @@ repo forall -c 'git lfs pull'
 在Linux环境进行如下操作:
 
 进入源码根目录，执行如下命令进行版本编译。
-先输入：
+第1步：执行编译前的脚本
+```
+chmod 777 device/board/rpi/system_patch/system_patch.sh
+device/board/rpi/system_patch/system_patch.sh
+```
+第2步：编译系统镜像
 ```
 ./build.sh --product-name rpi4 --ccache
 ```
-完成后再输入：
+第2步：对系统镜像打包
 ```
 ./build.sh --product-name rpi4 --ccache --build-target rpi_image
 ```

@@ -1,4 +1,4 @@
-# device_board_iscas
+# device_board_rpi
 
 ## 简介
 
@@ -18,13 +18,14 @@
 
 - [树莓派4B]
 
-树莓派4B（Raspberry Pi 4 Model B）。 树莓派4B代码由[Diemit](https://gitee.com/diemit)提供。
+树莓派4B（Raspberry Pi 4 Model B）。 树莓派4B采用Broadcom BCM2711 SOC、64位1.5Hz四核CPU，500MHzGPU。2个USB2.0，2个USB3.0，2个micro HDMI端口，千兆以太网，使用Type-C口供电，有1G、2G、4G、8G四种DDR4内存版本，BCM2711最高支持16G内存。
 
 
 ## 目录
 
 ```
-device/board/iscas
+device/board/rpi
+├── rpi3                                # 树莓派3b开发板（未适配完成）
 ├── rpi4                                # 树莓派4b开发板
 └── ...
 ```
@@ -32,7 +33,7 @@ device/board/iscas
 ## 使用说明
 
 树莓派4b参考：
-- [树莓派4b](https://gitee.com/openharmony-sig/device_board_rpi/blob/OpenHarmony-3.2-Release/rpi4/README_zh.md)
+- [树莓派4b](https://gitee.com/openharmony-sig/device_board_rpi/blob/OpenHarmony-4.0-Release/rpi4/README_zh.md)
 
 
 ## 相关仓

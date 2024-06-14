@@ -17,9 +17,14 @@ print("rpi4_group in")
 group("rpi4_group") {
   deps = [
     "cfg:init_configs",
-    "distributedhardware:distributedhardware",
+    "../common/distributedhardware:distributedhardware",
     "//device/soc/broadcom/bcm2711/hardware:hardware_group",
-    "//vendor/iscas/rpi4/bluetooth:libbt_vendor",
-    "//vendor/${product_company}/rpi4/sample:sample_group"
+    # "//device/board/rpi/common/camera:chipset_build",
+    # "//device/board/rpi/common/camera:camera_host_vdi_impl_1.0",
+    # "//device/board/rpi/common/camerat:camera_board_vdi_impl"
+    # "//device/soc/broadcom/bcm2711/hardware/display:display_buffer_model",        #2024/04/07����
+    # "//device/soc/broadcom/bcm2711/hardware/display:display_composer_model",      #2024/04/07����
+    # "//vendor/iscas/common/bluetooth:libbt_vendor",
+    # "//vendor/iscas/common/sample:sample_group"
   ]
 }
