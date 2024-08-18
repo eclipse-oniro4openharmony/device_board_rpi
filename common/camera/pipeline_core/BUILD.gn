@@ -112,6 +112,7 @@ ohos_shared_library("camera_pipeline_core") {
     "$camera_path_vdi/pipeline_core/pipeline_impl/src/strategy",
     "$camera_path_usb/pipeline_core/pipeline_impl/src/strategy/config",
     "$camera_path_vdi/pipeline_core/ipp/include",
+    "$camera_path_vdi/dump/include",
     "$camera_path_usb/interfaces/hdi",
     "$camera_path_vdi/utils/event",
     "$camera_path_vdi/adapter/platform/v4l2/src/device_manager/include",
@@ -122,6 +123,7 @@ ohos_shared_library("camera_pipeline_core") {
     "node",
     "$third_path/libexif",
     "$third_path/ffmpeg",
+    "//drivers/hdf_core/interfaces/inner_api/host/uhdf"
   ]
 
   deps = [
@@ -130,7 +132,7 @@ ohos_shared_library("camera_pipeline_core") {
     "$camera_path_usb/camera_config:params.c",
     "$camera_path_usb/device_manager:usb_camera_device_manager",
     "$camera_path_usb/metadata_manager:usb_camera_metadata_manager",
-    "$camera_path_vdi/utils:camera_utils",
+#    "$camera_path_vdi/utils:camera_utils",
     "$third_path/ffmpeg:libohosffmpeg",
     "$third_path/libjpeg-turbo:turbojpeg_static",
   ]
@@ -139,7 +141,13 @@ ohos_shared_library("camera_pipeline_core") {
     "c_utils:utils",
     "drivers_interface_camera:libbuffer_producer_sequenceable_1.0",
     "drivers_interface_camera:metadata",
-    "graphic_chipsetsdk:surface",
+    "drivers_peripheral_camera:peripheral_camera_buffer_manager",
+    "drivers_peripheral_camera:peripheral_camera_device_manager",
+    "drivers_peripheral_camera:peripheral_camera_metadata_manager",
+    "drivers_peripheral_camera:peripheral_camera_pipeline_core",
+    "drivers_peripheral_camera:peripheral_camera_utils",
+    "drivers_peripheral_camera:peripheral_camera_v4l2_adapter",
+    "graphic_surface:surface",
     "hdf_core:libhdf_utils",
     "hilog:libhilog",
     "ipc:ipc_single",
