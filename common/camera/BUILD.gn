@@ -61,7 +61,7 @@ config("camhdi_impl_config") {
 
 host_sources = [
   "$camera_path/../v4l2/src/camera_device/camera_device_vdi_impl.cpp",
-  "$camera_path/../v4l2/src/camera_dump.cpp",
+#  "$camera_path/../v4l2/src/camera_dump.cpp",
   "$camera_path/../v4l2/src/camera_host/camera_host_config.cpp",
   "$camera_path/../v4l2/src/camera_host/camera_host_vdi_impl.cpp",
   "$camera_path/../v4l2/src/camera_host/hcs_deal.cpp",
@@ -95,6 +95,7 @@ host_includes = [
   "$camera_path/buffer_manager/src/buffer_adapter/standard",
   "$camera_path/utils/event",
   "$camera_path/../../display/interfaces/include",
+  "$camera_path/dump/include",
 
   #producer
   "$camera_path/pipeline_core/utils",
@@ -117,11 +118,11 @@ ohos_shared_library("camera_host_vdi_impl_1.0") {
   include_dirs = host_includes
 
   deps = [
-    "$camera_path/../usb_camera/device_manager:usb_camera_device_manager",
-    "$camera_path/../usb_camera/metadata_manager:usb_camera_metadata_manager",
-    "$camera_path/../usb_camera/buffer_manager:usb_camera_buffer_manager",
+#    "$camera_path/../usb_camera/device_manager:usb_camera_device_manager",
+#    "$camera_path/../usb_camera/metadata_manager:usb_camera_metadata_manager",
+#    "$camera_path/../usb_camera/buffer_manager:usb_camera_buffer_manager",
     "$board_camera_path/pipeline_core:camera_pipeline_core",
-    "$camera_path/utils:camera_utils",
+#    "$camera_path/utils:camera_utils",
   ]
 
   defines = []
@@ -135,7 +136,13 @@ ohos_shared_library("camera_host_vdi_impl_1.0") {
   if (is_standard_system) {
     external_deps = [
       "c_utils:utils",
-      "graphic_chipsetsdk:surface",
+      "graphic_surface:surface",
+      "drivers_peripheral_camera:peripheral_camera_buffer_manager",
+      "drivers_peripheral_camera:peripheral_camera_device_manager",
+      "drivers_peripheral_camera:peripheral_camera_metadata_manager",
+      "drivers_peripheral_camera:peripheral_camera_pipeline_core",
+      "drivers_peripheral_camera:peripheral_camera_utils",
+      "drivers_peripheral_camera:peripheral_camera_v4l2_adapter",
       "hdf_core:libhdf_host",
       "hdf_core:libhdf_ipc_adapter",
       "hdf_core:libhdf_utils",
@@ -152,6 +159,7 @@ ohos_shared_library("camera_host_vdi_impl_1.0") {
   external_deps += [
     "drivers_interface_camera:libbuffer_producer_sequenceable_1.0",
     "drivers_interface_camera:metadata",
+    "drivers_interface_display:libdisplay_composer_proxy_1.0",
     "hitrace:hitrace_meter",
     "ipc:ipc_single",
   ]
