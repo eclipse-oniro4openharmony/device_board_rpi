@@ -1,7 +1,4 @@
-# Copyright (C) 2021–2023 Beijing OSWare Technology Co., Ltd
-# This file contains confidential and proprietary information of
-# OSWare Technology Co., Ltd
-#
+# Copyright (c) 2023 Huawei Device Co., Ltd.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -13,13 +10,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 import("//build/ohos.gni")
 import("//drivers/hdf_core/adapter/uhdf2/uhdf.gni")
 import("//drivers/peripheral/camera/vdi_base/usb_camera/camera_usb.gni")
 
 config("pipe_config") {
   visibility = [ ":*" ]
+
+  defines = []
+  # if (drivers_peripheral_camera_feature_usb) {
+    defines += [ "CAMERA_BUILT_ON_USB" ]
+  # }
 
   cflags_cc = [
     "-Wall",
@@ -47,6 +48,11 @@ config("pipe_config") {
   ]
 }
 
+# weak dependency of ffmpeg
+config("weak_ffmpeg") {
+  defines = [ "DEVICE_USAGE_FFMPEG_ENABLE" ]
+}
+
 ohos_shared_library("camera_pipeline_core") {
   sources = [
     "node/v4l2_source_node.cpp",
@@ -57,6 +63,8 @@ ohos_shared_library("camera_pipeline_core") {
     "$camera_path_usb/pipeline_core/src/node/exif_node.cpp",
     "$camera_path_usb/pipeline_core/src/node/face_node.cpp",
     "$camera_path_usb/pipeline_core/src/node/fork_node.cpp",
+    "$camera_path_usb/pipeline_core/src/node/scale_node.cpp",
+    "$camera_path_vdi/dump/src/camera_dump.cpp",
     "$camera_path_vdi/pipeline_core/host_stream/src/host_stream_impl.cpp",
     "$camera_path_vdi/pipeline_core/host_stream/src/host_stream_mgr_impl.cpp",
     "$camera_path_vdi/pipeline_core/ipp/src/algo_plugin.cpp",
@@ -112,7 +120,6 @@ ohos_shared_library("camera_pipeline_core") {
     "$camera_path_vdi/pipeline_core/pipeline_impl/src/strategy",
     "$camera_path_usb/pipeline_core/pipeline_impl/src/strategy/config",
     "$camera_path_vdi/pipeline_core/ipp/include",
-    "$camera_path_vdi/dump/include",
     "$camera_path_usb/interfaces/hdi",
     "$camera_path_vdi/utils/event",
     "$camera_path_vdi/adapter/platform/v4l2/src/device_manager/include",
@@ -122,8 +129,8 @@ ohos_shared_library("camera_pipeline_core") {
     "$camera_path_vdi/adapter/platform/v4l2/src/driver_adapter/include/",
     "node",
     "$third_path/libexif",
-    "$third_path/ffmpeg",
-    "//drivers/hdf_core/interfaces/inner_api/host/uhdf"
+    "$camera_path_vdi/dump/include",
+    "$camera_path_vdi/../interfaces",
   ]
 
   deps = [
@@ -132,8 +139,7 @@ ohos_shared_library("camera_pipeline_core") {
     "$camera_path_usb/camera_config:params.c",
     "$camera_path_usb/device_manager:usb_camera_device_manager",
     "$camera_path_usb/metadata_manager:usb_camera_metadata_manager",
-#    "$camera_path_vdi/utils:camera_utils",
-    "$third_path/ffmpeg:libohosffmpeg",
+    "$camera_path_vdi/utils:peripheral_camera_utils",
     "$third_path/libjpeg-turbo:turbojpeg_static",
   ]
 
@@ -141,13 +147,8 @@ ohos_shared_library("camera_pipeline_core") {
     "c_utils:utils",
     "drivers_interface_camera:libbuffer_producer_sequenceable_1.0",
     "drivers_interface_camera:metadata",
-    "drivers_peripheral_camera:peripheral_camera_buffer_manager",
-    "drivers_peripheral_camera:peripheral_camera_device_manager",
-    "drivers_peripheral_camera:peripheral_camera_metadata_manager",
-    "drivers_peripheral_camera:peripheral_camera_pipeline_core",
-    "drivers_peripheral_camera:peripheral_camera_utils",
-    "drivers_peripheral_camera:peripheral_camera_v4l2_adapter",
     "graphic_surface:surface",
+    "hdf_core:libhdf_host",
     "hdf_core:libhdf_utils",
     "hilog:libhilog",
     "ipc:ipc_single",
@@ -157,4 +158,19 @@ ohos_shared_library("camera_pipeline_core") {
   install_images = [ chipset_base_dir ]
   subsystem_name = "device_rpi4"
   part_name = "device_rpi4"
+  if (device_usb_camera_ffmpeg_enable) {
+    deps += [ "$third_path/ffmpeg:libohosffmpeg" ]
+    include_dirs += [ "$third_path/ffmpeg" ]
+    configs = [ ":weak_ffmpeg" ]
+  }
+}
+
+config("example_config") {
+  visibility = [ ":*" ]
+
+  cflags = [
+    "-Wno-error",
+    "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
 }

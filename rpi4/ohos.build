@@ -3,8 +3,7 @@
     "parts": {
         "device_rpi4": {
             "module_list": [
-                "//device/board/rpi/${device_name}:rpi4_group",
-                "//device/board/rpi/common/camera:camera_host_vdi_impl"
+                "//device/board/rpi/${device_name}:rpi4_group"
             ],
             "test_list": [
                 "//device/board/rpi/system_patch:system_patch",

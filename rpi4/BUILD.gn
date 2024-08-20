@@ -18,6 +18,7 @@ group("rpi4_group") {
   deps = [
     "cfg:init_configs",
     "../common/distributedhardware:distributedhardware",
+    "//device/board/rpi/common/camera:camera_host_vdi_impl",
     "//device/soc/broadcom/bcm2711/hardware:hardware_group",
   ]
 }
