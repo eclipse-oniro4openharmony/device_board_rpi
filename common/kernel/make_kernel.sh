@@ -26,11 +26,8 @@ export KERNEL_SRC_TMP_PATH=${PROJECT_ROOT}/out/kernel/src_tmp/${KERNEL_VERSION}
 export KERNEL_OBJ_TMP_PATH=${PROJECT_ROOT}/out/kernel/OBJ/${KERNEL_VERSION}
 export KERNEL_IMAGE_FILE=${KERNEL_OBJ_TMP_PATH}/arch/${KERNEL_ARCH}/boot/${KERNEL_IMAGE}
 
-if [ $KERNEL_ARCH == "arm" ];then
-    LINUX_KERNEL_MAKEFILE=${PROJECT_ROOT}/device/board/rpi/common/kernel/make_kernel_32.mk
-else
-    LINUX_KERNEL_MAKEFILE=${PROJECT_ROOT}/device/board/rpi/common/kernel/make_kernel_64.mk
-fi
+
+LINUX_KERNEL_MAKEFILE=${PROJECT_ROOT}/device/board/rpi/common/kernel/make_kernel_64.mk
 
 
 LINUX_dtb_MAKEFILE=${PROJECT_ROOT}/device/board/rpi/common/kernel/make_dtb.mk

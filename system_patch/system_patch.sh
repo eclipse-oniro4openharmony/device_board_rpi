@@ -33,3 +33,6 @@ cp -arfL ${PATCH_SRC_PATH}/whitelist/compile_standard_whitelist.json ${PROJECT_R
 #graphic_2d
 cp -arfL ${PATCH_SRC_PATH}/graphic_2d/rs_draw_cmd.cpp ${PROJECT_ROOT}foundation/graphic/graphic_2d/rosen/modules/render_service_base/src/pipeline/rs_draw_cmd.cpp
 cp -arfL ${PATCH_SRC_PATH}/graphic_2d/surface_image.cpp ${PROJECT_ROOT}foundation/graphic/graphic_2d/frameworks/surfaceimage/src/surface_image.cpp
+cp -arfL ${PATCH_SRC_PATH}/graphic_2d/pixel_map_from_surface.cpp ${PROJECT_ROOT}foundation/graphic/graphic_2d/rosen/modules/create_pixelmap_surface/src/pixel_map_from_surface.cpp
+cp -arfL ${PATCH_SRC_PATH}/graphic_2d/egl_blob_cache.cpp ${PROJECT_ROOT}foundation/graphic/graphic_2d/frameworks/opengl_wrapper/src/EGL/egl_blob_cache.cpp
+cp -arfL ${PATCH_SRC_PATH}/graphic_2d/egl_wrapper_entry.cpp ${PROJECT_ROOT}foundation/graphic/graphic_2d/frameworks/opengl_wrapper/src/EGL/egl_wrapper_entry.cpp

@@ -19,11 +19,9 @@ CLANG_CC := $(CLANG_HOST_TOOLCHAIN)/clang
 
 KERNEL_PREBUILT_MAKE := make
 
-ifeq ($(KERNEL_ARCH), arm)
-    KERNEL_TARGET_TOOLCHAIN := $(PREBUILTS_GCC_DIR)/linux-x86/arm/gcc-linaro-7.5.0-arm-linux-gnueabi/bin/arm-linux-gnueabi-
-else ifeq ($(KERNEL_ARCH), arm64)
-    KERNEL_TARGET_TOOLCHAIN := $(PREBUILTS_GCC_DIR)/linux-x86/aarch64/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-
-endif
+
+KERNEL_TARGET_TOOLCHAIN := $(PREBUILTS_GCC_DIR)/linux-x86/aarch64/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-
+
 
 KERNEL_CROSS_COMPILE :=
 KERNEL_CROSS_COMPILE += CC="$(CLANG_CC)"
