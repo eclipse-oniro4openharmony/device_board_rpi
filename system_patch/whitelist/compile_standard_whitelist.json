@@ -14,6 +14,7 @@
         "//arkcompiler/toolchain/tooling/test:debugger_entry",
         "//arkcompiler/toolchain/tooling/test:jsdebugtest",
         "//arkcompiler/toolchain/tooling:libark_ecma_debugger_test",
+        "//arkcompiler/toolchain/tooling/client:libark_client",
         "//device/board/hihope/rk3568/camera/vdi_impl/v4l2/device_manager:camera_device_manager",
         "//device/board/hihope/rk3568/camera/vdi_impl/v4l2/driver_adapter:camera_v4l2_adapter",
         "//device/board/hihope/rk3568/camera/vdi_impl/v4l2/metadata_manager:camera_metadata_manager",
@@ -73,6 +74,7 @@
         "//base/hiviewdfx/hiview/test/plugins/examples_bundle/bundle_plugin_example3:bundle_plugin_example3",
         "//base/security/device_security_level/baselib/msglib:messenger_static",
         "//base/security/device_security_level/baselib/utils:utils_static",
+        "//base/security/device_security_level/interfaces/inner_api:dslm_sdk",
         "//base/security/device_security_level/interfaces/inner_api:dslm_sdk_small",
         "//base/security/device_security_level/oem_property/ohos/lite:dslm_ohos_cred_obj",
         "//base/security/device_security_level/services/common:service_common_obj",
@@ -391,6 +393,7 @@
     "external_deps_bundle_not_add": [
         "//arkcompiler/toolchain/tooling/test:jsdebugtest",
         "//arkcompiler/toolchain/tooling:libark_ecma_debugger_test",
+        "//arkcompiler/toolchain/tooling/client:libark_client",
         "//base/hiviewdfx/faultloggerd/tools/crasher_cpp:crasher_cpp",
         "//base/security/device_security_level/oem_property/common:oem_common_obj",
         "//base/security/device_security_level/services/common:service_common_obj",
@@ -469,6 +472,7 @@
     ],
     "third_deps_bundle_not_add": [
         "//arkcompiler/toolchain/tooling:libark_ecma_debugger_test",
+        "//arkcompiler/toolchain/tooling/client:libark_client",
         "//base/global/i18n_lite/interfaces/kits/js/builtin:nativeapi_locale_simulator",
         "//base/global/resource_management_lite/frameworks/resmgr_lite:global_resmgr_simulator",
         "//base/security/device_security_level/services/sa:dslm_server",
@@ -727,6 +731,8 @@
         "//third_party/vk-gl-cts/modules/gles3:deqp-gles3_source",
         "//third_party/vk-gl-cts/modules/gles3:libdeqp-gles3",
         "//third_party/vk-gl-cts/modules/glshared:deqp-gl-shared_source",
+        "//third_party/glslang:glslang_validator",
+        "//third_party/glslang:spirv-remap",
         "//third_party/vk-gl-cts/modules/glshared:libdeqp-gl-shared",
         "//third_party/rust/crates/rust-openssl/openssl-sys:lib"
     ]
