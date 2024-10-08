@@ -35,22 +35,27 @@
         "//device/soc/rockchip/rk3568/hardware/omx_il/component/video/enc:libomxvpu_enc",
         "//device/soc/rockchip/rk3568/hardware/omx_il/core:libOMX_Core",
         "//device/soc/rockchip/rk3568/hardware/omx_il/libOMXPlugin:libOMX_Pluginhw",
-
+        "//foundation/arkui/napi/sample/native_module_systemtest:systemtestnapi",
+        "//ide/tools/previewer:lite_previewer",
+        "//vendor/hihope/rk3568/bluetooth:libbt_vendor",
+        "//vendor/hihope/ipcamera/bluetooth:libbt_vendor",
 
         "//device/soc/broadcom/bcm2711/hardware/display:display_gfx",
         "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_buffer_vdi_impl",
         "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_composer_vdi_impl",
         "//device/soc/broadcom/common:ptgen",
+        "//device/board/rpi/common/camera/pipeline_core:camera_pipeline_core",
+        "//device/board/rpi/common/camera:camera_host_vdi_impl_1.0",
+    ],
+    "deps_added_external_part_module": [
 
+        "//device/soc/broadcom/bcm2711/hardware/display:display_gfx",
+        "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_buffer_vdi_impl",
+        "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_composer_vdi_impl",
+        "//device/soc/broadcom/common:ptgen",
         "//device/board/rpi/common/camera/pipeline_core:camera_pipeline_core",
         "//device/board/rpi/common/camera:camera_host_vdi_impl_1.0",
 
-        "//foundation/arkui/napi/sample/native_module_systemtest:systemtestnapi",
-        "//ide/tools/previewer:lite_previewer",
-        "//vendor/hihope/rk3568/bluetooth:libbt_vendor",
-        "//vendor/hihope/ipcamera/bluetooth:libbt_vendor"
-    ],
-    "deps_added_external_part_module": [
         "//arkcompiler/ets_runtime/ecmascript/compiler:ark_aot_compiler",
         "//arkcompiler/ets_runtime/ecmascript/compiler:libark_jsoptimizer_set",
         "//arkcompiler/ets_runtime/ecmascript/pgo_profiler/prof_dump:profdump",
@@ -75,7 +80,7 @@
         "//base/security/device_security_level/baselib/msglib:messenger_static",
         "//base/security/device_security_level/baselib/utils:utils_static",
         "//base/security/device_security_level/interfaces/inner_api:dslm_sdk",
-        "//base/security/device_security_level/interfaces/inner_api:dslm_sdk_small",
+	"//base/security/device_security_level/interfaces/inner_api:dslm_sdk_small",
         "//base/security/device_security_level/oem_property/ohos/lite:dslm_ohos_cred_obj",
         "//base/security/device_security_level/services/common:service_common_obj",
         "//base/security/device_security_level/services/dslm:service_dslm_obj",
@@ -141,15 +146,6 @@
         "//device/soc/rockchip/rk3568/hardware/omx_il/component/video/enc:libomxvpu_enc",
         "//device/soc/rockchip/rk3568/hardware/omx_il/core:libOMX_Core",
         "//device/soc/rockchip/rk3568/hardware/omx_il/osal:RkOMX_OSAL",
-
-        "//device/soc/broadcom/bcm2711/hardware/display:display_gfx",
-        "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_buffer_vdi_impl",
-        "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_composer_vdi_impl",
-        "//device/soc/broadcom/common:ptgen",
-
-        "//device/board/rpi/common/camera/pipeline_core:camera_pipeline_core",
-        "//device/board/rpi/common/camera:camera_host_vdi_impl_1.0",
-
         "//drivers/hdf_core/adapter/build/test_common:libhdf_test_common",
         "//drivers/hdf_core/adapter/uhdf/manager:hdf_core",
         "//drivers/hdf_core/adapter/uhdf/posix:hdf_posix_osal",
@@ -391,6 +387,12 @@
         "//test/xts/acts/multimedia/image/image_js_standard/image_ndk_test/entry/src/main/cpp:imagePixelmap"
     ],
     "external_deps_bundle_not_add": [
+        "//device/soc/broadcom/bcm2711/hardware/display:display_gfx",
+        "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_buffer_vdi_impl",
+        "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_composer_vdi_impl",
+        "//device/soc/broadcom/common:ptgen",
+        "//device/board/rpi/common/camera/pipeline_core:camera_pipeline_core",
+        "//device/board/rpi/common/camera:camera_host_vdi_impl_1.0",
         "//arkcompiler/toolchain/tooling/test:jsdebugtest",
         "//arkcompiler/toolchain/tooling:libark_ecma_debugger_test",
         "//arkcompiler/toolchain/tooling/client:libark_client",
@@ -441,15 +443,6 @@
         "//device/soc/rockchip/rk3568/hardware/omx_il/core:libOMX_Core",
         "//device/soc/rockchip/rk3568/hardware/omx_il/libOMXPlugin:libOMX_Pluginhw",
         "//device/soc/rockchip/rk3568/hardware/omx_il/osal:RkOMX_OSAL",
-
-        "//device/soc/broadcom/bcm2711/hardware/display:display_gfx",
-        "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_buffer_vdi_impl",
-        "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_composer_vdi_impl",
-        "//device/soc/broadcom/common:ptgen",
-
-        "//device/board/rpi/common/camera/pipeline_core:camera_pipeline_core",
-        "//device/board/rpi/common/camera:camera_host_vdi_impl_1.0",
-
         "//drivers/hdf_core/adapter/uhdf/platform:hdf_platform",
         "//drivers/peripheral/input/hal:hdi_input",
         "//drivers/peripheral/light/hal:hdi_light",
@@ -471,6 +464,12 @@
         "//vendor/hihope/ipcamera/bluetooth:libbt_vendor"
     ],
     "third_deps_bundle_not_add": [
+        "//device/soc/broadcom/bcm2711/hardware/display:display_gfx",
+        "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_buffer_vdi_impl",
+        "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_composer_vdi_impl",
+        "//device/soc/broadcom/common:ptgen",
+        "//device/board/rpi/common/camera/pipeline_core:camera_pipeline_core",
+        "//device/board/rpi/common/camera:camera_host_vdi_impl_1.0",
         "//arkcompiler/toolchain/tooling:libark_ecma_debugger_test",
         "//arkcompiler/toolchain/tooling/client:libark_client",
         "//base/global/i18n_lite/interfaces/kits/js/builtin:nativeapi_locale_simulator",
@@ -486,15 +485,6 @@
         "//base/security/huks/utils/crypto_adapter:libhuks_utils_client_service_adapter_static",
         "//base/update/updateservice/services/engine:updateservice",
         "//developtools/hdc/test:hdc_common",
-
-        "//device/soc/broadcom/bcm2711/hardware/display:display_gfx",
-        "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_buffer_vdi_impl",
-        "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_composer_vdi_impl",
-        "//device/soc/broadcom/common:ptgen",
-
-        "//device/board/rpi/common/camera/pipeline_core:camera_pipeline_core",
-        "//device/board/rpi/common/camera:camera_host_vdi_impl_1.0",
-
         "//device/board/hihope/rk3568/camera/vdi_impl/v4l2/pipeline_core:camera_pipeline_core",
         "//device/soc/rockchip/rk3568/hardware/display:display_composer_vendor",
         "//device/soc/rockchip/rk3568/hardware/display:libdisplay_buffer_vendor",
