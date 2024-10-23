@@ -15,7 +15,7 @@
 set -e
 
 PROJECT_ROOT=$(pwd)/
-PATCH_SRC_PATH=${PROJECT_ROOT}device/board/rpi/system_patch
+PATCH_SRC_PATH=${PROJECT_ROOT}device/board/rpi/system_patch/
 
 # #chmod
 chmod 777 ${PROJECT_ROOT}device/board/rpi/common/build_bootimg.py
@@ -27,9 +27,8 @@ chmod 777 ${PROJECT_ROOT}device/board/rpi/common/kernel/make_dtb.mk
 chmod 777 ${PROJECT_ROOT}device/board/rpi/common/kernel/make_kernel_32.mk
 chmod 777 ${PROJECT_ROOT}device/board/rpi/common/kernel/make_kernel_64.mk
 
-#whitelist
-cp -arfL ${PATCH_SRC_PATH}/whitelist/compile_standard_whitelist.json ${PROJECT_ROOT}build/compile_standard_whitelist.json
-
-#graphic_2d
-cp -arfL ${PATCH_SRC_PATH}/graphic_2d/rs_draw_cmd.cpp ${PROJECT_ROOT}foundation/graphic/graphic_2d/rosen/modules/render_service_base/src/pipeline/rs_draw_cmd.cpp
-cp -arfL ${PATCH_SRC_PATH}/graphic_2d/surface_image.cpp ${PROJECT_ROOT}foundation/graphic/graphic_2d/frameworks/surfaceimage/src/surface_image.cpp
+cp -arfL ${PATCH_SRC_PATH}build/compile_standard_whitelist.json ${PROJECT_ROOT}build/compile_standard_whitelist.json
+cp -arfL ${PATCH_SRC_PATH}foundation/main_thread.cpp ${PROJECT_ROOT}foundation/ability/ability_runtime/frameworks/native/appkit/app/main_thread.cpp
+cp -arfL ${PATCH_SRC_PATH}base/appspawn_adapter.cpp ${PROJECT_ROOT}base/startup/appspawn/modules/common/appspawn_adapter.cpp
+cp -arfL ${PATCH_SRC_PATH}applications/ohos.build ${PROJECT_ROOT}applications/standard/hap/ohos.build
+cp -arfL ${PATCH_SRC_PATH}kernel/xhci.h ${PROJECT_ROOT}kernel/linux/linux-5.10/drivers/usb/host/xhci.h

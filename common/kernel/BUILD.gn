@@ -21,11 +21,6 @@ kernel_source_dir = "//kernel/linux/$linux_kernel_version"
 
 # 判断内核编译类型
 kernel_image = "Image.gz"
-if(target_cpu == "arm64"){
-  kernel_image = "Image.gz"
-}else{
-  kernel_image = "zImage"
-}
 
 defconfig_file = "bcm2711_oh_defconfig"
 
@@ -50,7 +45,7 @@ action("rpi_build_kernel") {
     args = [
       rebase_path("//"),
       product_path,
-      target_cpu,
+      "arm64",
       linux_kernel_version,
       kernel_image,
       "$defconfig_file",
