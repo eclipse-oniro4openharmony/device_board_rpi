@@ -1,0 +1,110 @@
+From e3a84e14b52ee36e43e537b59c9b67f795004c7e Mon Sep 17 00:00:00 2001
+From: Yongqin Liu <yongqin.liu66@gmail.com>
+Date: Tue, 28 Apr 2026 20:55:50 +0800
+Subject: [PATCH 1/1] Revert "KVM: arm64: Don't retire aborted MMIO
+ instruction"
+
+This reverts commit d60dbe3ebed01e6fb928c1cf397182491bd44525.
+
+For the following build error:
+
+    [OHOS ERROR] [NINJA] /data/android12/ohos-rpi4-5.0.1/sources/out/kernel/src_tmp/linux-5.10/arch/arm64/kvm/mmio.c:77:7: error: implicit declaration of function 'vcpu_get_flag' [-Werror,-Wimplicit-function-declaration]
+    [OHOS ERROR] [NINJA]         if (!vcpu_get_flag(vcpu, PENDING_EXCEPTION))
+    [OHOS ERROR] [NINJA]              ^
+    [OHOS ERROR] [NINJA] /data/android12/ohos-rpi4-5.0.1/sources/out/kernel/src_tmp/linux-5.10/arch/arm64/kvm/mmio.c:77:7: note: did you mean 'vcpu_get_reg'?
+    [OHOS ERROR] [NINJA] /data/android12/ohos-rpi4-5.0.1/sources/out/kernel/src_tmp/linux-5.10/arch/arm64/include/asm/kvm_emulate.h:158:38: note: 'vcpu_get_reg' declared here
+    [OHOS ERROR] [NINJA] static __always_inline unsigned long vcpu_get_reg(const struct kvm_vcpu *vcpu,
+    [OHOS ERROR] [NINJA]                                      ^
+    [OHOS ERROR] [NINJA] /data/android12/ohos-rpi4-5.0.1/sources/out/kernel/src_tmp/linux-5.10/arch/arm64/kvm/mmio.c:77:27: error: use of undeclared identifier 'PENDING_EXCEPTION'
+    [OHOS ERROR] [NINJA]         if (!vcpu_get_flag(vcpu, PENDING_EXCEPTION))
+    [OHOS ERROR] [NINJA]                                  ^
+    [OHOS ERROR] [NINJA] /data/android12/ohos-rpi4-5.0.1/sources/out/kernel/src_tmp/linux-5.10/arch/arm64/kvm/mmio.c:81:31: error: use of undeclared identifier 'EXCEPT_MASK'
+    [OHOS ERROR] [NINJA]                 switch (vcpu_get_flag(vcpu, EXCEPT_MASK)) {
+    [OHOS ERROR] [NINJA]                                             ^
+    [OHOS ERROR] [NINJA] /data/android12/ohos-rpi4-5.0.1/sources/out/kernel/src_tmp/linux-5.10/arch/arm64/kvm/mmio.c:82:8: error: implicit declaration of function 'unpack_vcpu_flag' [-Werror,-Wimplicit-function-declaration]
+    [OHOS ERROR] [NINJA]                 case unpack_vcpu_flag(EXCEPT_AA32_UND):
+    [OHOS ERROR] [NINJA]                      ^
+    [OHOS ERROR] [NINJA] /data/android12/ohos-rpi4-5.0.1/sources/out/kernel/src_tmp/linux-5.10/arch/arm64/kvm/mmio.c:82:25: error: use of undeclared identifier 'EXCEPT_AA32_UND'
+    [OHOS ERROR] [NINJA]                 case unpack_vcpu_flag(EXCEPT_AA32_UND):
+    [OHOS ERROR] [NINJA]                                       ^
+    [OHOS ERROR] [NINJA] /data/android12/ohos-rpi4-5.0.1/sources/out/kernel/src_tmp/linux-5.10/arch/arm64/kvm/mmio.c:83:25: error: use of undeclared identifier 'EXCEPT_AA32_IABT'
+    [OHOS ERROR] [NINJA]                 case unpack_vcpu_flag(EXCEPT_AA32_IABT):
+    [OHOS ERROR] [NINJA]                                       ^
+    [OHOS ERROR] [NINJA] /data/android12/ohos-rpi4-5.0.1/sources/out/kernel/src_tmp/linux-5.10/arch/arm64/kvm/mmio.c:84:25: error: use of undeclared identifier 'EXCEPT_AA32_DABT'
+    [OHOS ERROR] [NINJA]                 case unpack_vcpu_flag(EXCEPT_AA32_DABT):
+    [OHOS ERROR] [NINJA]                                       ^
+    [OHOS ERROR] [NINJA] /data/android12/ohos-rpi4-5.0.1/sources/out/kernel/src_tmp/linux-5.10/arch/arm64/kvm/mmio.c:90:31: error: use of undeclared identifier 'EXCEPT_MASK'
+    [OHOS ERROR] [NINJA]                 switch (vcpu_get_flag(vcpu, EXCEPT_MASK)) {
+    [OHOS ERROR] [NINJA]                                             ^
+    [OHOS ERROR] [NINJA] /data/android12/ohos-rpi4-5.0.1/sources/out/kernel/src_tmp/linux-5.10/arch/arm64/kvm/mmio.c:91:8: error: implicit declaration of function 'unpack_vcpu_flag' [-Werror,-Wimplicit-function-declaration]
+    [OHOS ERROR] [NINJA]                 case unpack_vcpu_flag(EXCEPT_AA64_EL1_SYNC):
+    [OHOS ERROR] [NINJA]                      ^
+    [OHOS ERROR] [NINJA]   AR      arch/arm64/mm/built-in.a
+    [OHOS ERROR] [NINJA] /data/android12/ohos-rpi4-5.0.1/sources/out/kernel/src_tmp/linux-5.10/arch/arm64/kvm/mmio.c:91:25: error: use of undeclared identifier 'EXCEPT_AA64_EL1_SYNC'
+    [OHOS ERROR] [NINJA]                 case unpack_vcpu_flag(EXCEPT_AA64_EL1_SYNC):
+    [OHOS ERROR] [NINJA]                                       ^
+    [OHOS ERROR] [NINJA]   CC      mm/shmem.o
+    [OHOS ERROR] [NINJA] /data/android12/ohos-rpi4-5.0.1/sources/out/kernel/src_tmp/linux-5.10/arch/arm64/kvm/mmio.c:92:25: error: use of undeclared identifier 'EXCEPT_AA64_EL2_SYNC'
+    [OHOS ERROR] [NINJA]                 case unpack_vcpu_flag(EXCEPT_AA64_EL2_SYNC):
+    [OHOS ERROR] [NINJA]                                       ^
+    [OHOS ERROR] [NINJA] 11 errors generated.
+
+Signed-off-by: Yongqin Liu <yongqin.liu66@gmail.com>
+Change-Id: I73c455b4a71bfc09c36ab930df3cc2987b20fac2
+---
+ arch/arm64/kvm/mmio.c | 32 ++------------------------------
+ 1 file changed, 2 insertions(+), 30 deletions(-)
+
+diff --git a/arch/arm64/kvm/mmio.c b/arch/arm64/kvm/mmio.c
+index 8103c5425db9..03c2e0045116 100644
+--- a/arch/arm64/kvm/mmio.c
++++ b/arch/arm64/kvm/mmio.c
+@@ -72,31 +72,6 @@ unsigned long kvm_mmio_read_buf(const void *buf, unsigned int len)
+ 	return data;
+ }
+ 
+-static bool kvm_pending_sync_exception(struct kvm_vcpu *vcpu)
+-{
+-	if (!vcpu_get_flag(vcpu, PENDING_EXCEPTION))
+-		return false;
+-
+-	if (vcpu_el1_is_32bit(vcpu)) {
+-		switch (vcpu_get_flag(vcpu, EXCEPT_MASK)) {
+-		case unpack_vcpu_flag(EXCEPT_AA32_UND):
+-		case unpack_vcpu_flag(EXCEPT_AA32_IABT):
+-		case unpack_vcpu_flag(EXCEPT_AA32_DABT):
+-			return true;
+-		default:
+-			return false;
+-		}
+-	} else {
+-		switch (vcpu_get_flag(vcpu, EXCEPT_MASK)) {
+-		case unpack_vcpu_flag(EXCEPT_AA64_EL1_SYNC):
+-		case unpack_vcpu_flag(EXCEPT_AA64_EL2_SYNC):
+-			return true;
+-		default:
+-			return false;
+-		}
+-	}
+-}
+-
+ /**
+  * kvm_handle_mmio_return -- Handle MMIO loads after user space emulation
+  *			     or in-kernel IO emulation
+@@ -109,11 +84,8 @@ int kvm_handle_mmio_return(struct kvm_vcpu *vcpu)
+ 	unsigned int len;
+ 	int mask;
+ 
+-	/*
+-	 * Detect if the MMIO return was already handled or if userspace aborted
+-	 * the MMIO access.
+-	 */
+-	if (unlikely(!vcpu->mmio_needed || kvm_pending_sync_exception(vcpu)))
++	/* Detect an already handled MMIO return */
++	if (unlikely(!vcpu->mmio_needed))
+ 		return 1;
+ 
+ 	vcpu->mmio_needed = 0;
+-- 
+2.25.1
+

@@ -1,0 +1,33 @@
+From 9bfb59abbc92f928bdc8fc4804e9a8e63c24abe7 Mon Sep 17 00:00:00 2001
+From: Yongqin Liu <yongqin.liu66@gmail.com>
+Date: Wed, 29 Apr 2026 07:27:20 +0800
+Subject: [PATCH 1/1] BUILD.gn: workaround for error: misleading indentation
+
+[OHOS ERROR] [NINJA] ../../third_party/toybox/toys/pending/mdev.c:237:7: error: misleading indentation; statement is not part of the previous 'else' [-Werror,-Wmisleading-indentation]
+[OHOS ERROR] [NINJA]       if ((temp=getenv("ACTION")) && !strcmp(temp, "remove")) {
+[OHOS ERROR] [NINJA]       ^
+[OHOS ERROR] [NINJA] ../../third_party/toybox/toys/pending/mdev.c:234:5: note: previous statement is here
+[OHOS ERROR] [NINJA]     else
+[OHOS ERROR] [NINJA]     ^
+
+Signed-off-by: Yongqin Liu <yongqin.liu66@gmail.com>
+Change-Id: I31b95bd963cabaf29ca6e3168e655946045aea0d
+---
+ BUILD.gn | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/BUILD.gn b/BUILD.gn
+index ffa8c5de4043..ed98d99617a0 100644
+--- a/BUILD.gn
++++ b/BUILD.gn
+@@ -730,6 +730,7 @@ if (defined(ohos_lite)) {
+       "-Wno-tautological-constant-compare",
+       "-Wno-string-conversion",
+       "-Wno-unused-but-set-variable",
++      "-Wno-misleading-indentation",
+     ]
+ 
+     ldflags = [
+-- 
+2.25.1
+

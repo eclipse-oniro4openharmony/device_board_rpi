@@ -1,0 +1,62 @@
+From 6d077548c44962a1ebb941484d6cd6872a4f286c Mon Sep 17 00:00:00 2001
+From: Yongqin Liu <yongqin.liu66@gmail.com>
+Date: Fri, 8 May 2026 01:47:54 +0800
+Subject: [PATCH 1/1] fix for foundation crash on 6.1
+
+    01-01 08:00:53.422  1438  1438 I C02d11/DfxFaultLogger: #06 pc 0000000000002584 /system/lib64/platformsdk/librestorecon.z.so(RestoreconCommon+60)(e69ca2c9b5db5c2084ada838028a74b2)
+    01-01 08:00:53.422  1438  1438 I C02d11/DfxFaultLogger: #07 pc 0000000000040878 /system/lib64/libapp_domain_verify_mgr_service.z.so(OHOS::AppDomainVerify::AppDomainVerifyMgrService::ResetDBSecurityByPath()+116)(864b236e2dfade0aa677380465d8ac71)
+    01-01 08:00:53.422  1438  1438 I C02d11/DfxFaultLogger: #08 pc 000000000004025c /system/lib64/libapp_domain_verify_mgr_service.z.so(OHOS::AppDomainVerify::AppDomainVerifyMgrService::AppDomainVerifyMgrService()+272)(864b236e2dfade0aa677380465d8ac71)
+    01-01 08:00:53.423  1438  1438 I C02d11/DfxFaultLogger: #09 pc 0000000000020110 /system/lib64/libapp_domain_verify_mgr_service.z.so(_GLOBAL__sub_I_app_domain_verify_mgr_service.cpp+584)(864b236e2dfade0aa677380465d8ac71)
+
+Signed-off-by: Yongqin Liu <yongqin.liu66@gmail.com>
+Change-Id: Icd2f2a920618dbbc1ba93336ae8dcca8e45d334f
+---
+ services/BUILD.gn                                           | 5 ++++-
+ services/src/manager/core/app_domain_verify_mgr_service.cpp | 4 ++++
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/services/BUILD.gn b/services/BUILD.gn
+index 13a6d79085ea..5495b7147ce3 100644
+--- a/services/BUILD.gn
++++ b/services/BUILD.gn
+@@ -105,8 +105,11 @@ ohos_shared_library("app_domain_verify_mgr_service") {
+     "relational_store:native_rdb",
+     "safwk:system_ability_fwk",
+     "samgr:samgr_proxy",
+-    "selinux_adapter:librestorecon"
+   ]
++  if (build_selinux) {
++    external_deps += [ "selinux_adapter:librestorecon" ]
++    defines += [ "WITH_SELINUX" ]
++  }
+ 
+   sanitize = {
+     boundary_sanitize = true
+diff --git a/services/src/manager/core/app_domain_verify_mgr_service.cpp b/services/src/manager/core/app_domain_verify_mgr_service.cpp
+index de70b123d7df..d3992410af4e 100644
+--- a/services/src/manager/core/app_domain_verify_mgr_service.cpp
++++ b/services/src/manager/core/app_domain_verify_mgr_service.cpp
+@@ -29,7 +29,9 @@
+ #include "sa_interface/app_domain_verify_mgr_service.h"
+ #include "common_event_manager.h"
+ #include "common_event_support.h"
++#ifdef WITH_SELINUX
+ #include "policycoreutils.h"
++#endif
+ #include <sys/stat.h>
+ #include <unistd.h>
+ namespace OHOS {
+@@ -71,8 +73,10 @@ bool AppDomainVerifyMgrService::ResetDBSecurityByPath()
+         return false;
+     }
+ 
++#ifdef WITH_SELINUX
+     auto ret = RestoreconRecurse(Constants::SERVICE_PATH);
+     APP_DOMAIN_VERIFY_HILOGI(APP_DOMAIN_VERIFY_MGR_MODULE_SERVICE, "RestoreconRecurse %{public}d.", ret);
++#endif
+     return ERR_OK;
+ }
+ 
+-- 
+2.25.1
+

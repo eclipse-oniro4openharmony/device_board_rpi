@@ -1,0 +1,83 @@
+From 1d0f7c0b1dce6386d69992c1d6fb9b707c569275 Mon Sep 17 00:00:00 2001
+From: Yongqin Liu <yongqin.liu66@gmail.com>
+Date: Thu, 16 Apr 2026 19:55:30 +0800
+Subject: [PATCH 1/1] main_thread.cpp: use RPi4 version SetCacheDir
+
+refer to the change here:
+    https://gitcode.com/openharmony-sig/device_board_rpi/blob/OpenHarmony-5.0.0-Release/system_patch/foundation/main_thread.cpp
+
+Otherwise it will cause the appspawn crash like this:
+    [   25.295319] [pid=1][Init][WARNING][init_signal_handler.c:90]Service warning appspawn, SIGCHLD received, pid:451 uid:0 status:0.
+    [   25.343794] [pid=1][Init][INFO][init_common_service.c:925]ServiceReap info appspawn pid 451.
+    [   25.363783] [pid=1][Init][ERROR][init_common_service.c:973]ServiceReap error critical service crashed appspawn 4
+
+Signed-off-by: Yongqin Liu <yongqin.liu66@gmail.com>
+Change-Id: I87cf125970e7a1877798f5e73c22b543b00c3b00
+---
+ frameworks/native/appkit/app/main_thread.cpp | 43 +++++++++++++++++++-
+ 1 file changed, 42 insertions(+), 1 deletion(-)
+
+diff --git a/frameworks/native/appkit/app/main_thread.cpp b/frameworks/native/appkit/app/main_thread.cpp
+index 0de8a685b4d2..75de106b076d 100644
+--- a/frameworks/native/appkit/app/main_thread.cpp
++++ b/frameworks/native/appkit/app/main_thread.cpp
+@@ -226,6 +226,46 @@ public:
+         return ERR_OK;
+     }
+ };
++
++static bool initStatus;
++static std::string cacheDir;
++static std::string ddkcacheDir;
++
++void SetCacheDir(const std::string dir)
++{
++    struct stat dirStat;
++    if (stat(dir.c_str(), &dirStat) != 0) {
++        TAG_LOGI(AAFwkTag::APPKIT, "inputdir not Create");
++        initStatus = false;
++        return;
++    }
++
++    struct stat cachedirstat;
++    struct stat ddkdirstat;
++    cacheDir = dir + std::string("/blobShader");
++    ddkcacheDir = dir + std::string("/ddkShader");
++
++    if (stat(cacheDir.c_str(), &cachedirstat) != 0) {
++        initStatus = false;
++        int ret = mkdir(cacheDir.c_str(), S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH);
++        if (ret == -1) {
++            initStatus = false;
++            TAG_LOGI(AAFwkTag::APPKIT, "cacheDir not Create");
++        } else {
++            initStatus = true;
++        }
++    } else {
++        initStatus = true;
++    }
++
++    if (stat(ddkcacheDir.c_str(), &ddkdirstat) != 0) {
++        int ret = mkdir(ddkcacheDir.c_str(), S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH);
++        if (ret == -1 && errno != EEXIST) {
++           TAG_LOGI(AAFwkTag::APPKIT, "ddkcacheDir not Create");
++        }
++    }
++}
++
+ } // namespace
+ 
+ void MainThread::GetNativeLibPath(const BundleInfo &bundleInfo, const HspList &hspList, AppLibPathMap &appLibPaths)
+@@ -1666,7 +1706,8 @@ void MainThread::HandleLaunchApplication(const AppLaunchData &appLaunchData, con
+     application_->SetApplicationContext(applicationContext);
+ 
+ #ifdef SUPPORT_SCREEN
+-    OHOS::EglSetCacheDir(applicationContext->GetCacheDir());
++//    OHOS::EglSetCacheDir(applicationContext->GetCacheDir());
++    SetCacheDir(applicationContext->GetCacheDir());
+ #endif
+ 
+     HspList hspList;
+-- 
+2.25.1
+

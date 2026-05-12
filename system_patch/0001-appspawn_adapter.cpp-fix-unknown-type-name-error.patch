@@ -1,0 +1,69 @@
+From 243410bce59f62cf163aa6e207549f3741d5173b Mon Sep 17 00:00:00 2001
+From: Yongqin Liu <yongqin.liu66@gmail.com>
+Date: Wed, 29 Apr 2026 10:12:40 +0800
+Subject: [PATCH 1/1] appspawn_adapter.cpp: fix unknown type name error
+
+like:
+[OHOS ERROR] [NINJA] ../../base/startup/appspawn/modules/common/appspawn_adapter.cpp:48:5: error: unknown type name 'HapDomainInfo'; did you mean 'HapTokenInfo'?
+[OHOS ERROR] [NINJA]     HapDomainInfo *hapDomainInfo);
+[OHOS ERROR] [NINJA]     ^~~~~~~~~~~~~
+[OHOS ERROR] [NINJA]     HapTokenInfo
+[OHOS ERROR] [NINJA] ../../base/security/access_token/interfaces/innerkits/accesstoken/include/hap_token_info.h:102:7: note: 'HapTokenInfo' declared here
+[OHOS ERROR] [NINJA] class HapTokenInfo final {
+[OHOS ERROR] [NINJA]       ^
+[OHOS ERROR] [NINJA] ../../base/startup/appspawn/modules/common/appspawn_adapter.cpp:281:12: error: use of undeclared identifier 'HapContextLoadConfig'
+[OHOS ERROR] [NINJA]     return HapContextLoadConfig();
+[OHOS ERROR] [NINJA]            ^
+[OHOS ERROR] [NINJA] ../../base/startup/appspawn/modules/common/appspawn_adapter.cpp:303:5: error: unknown type name 'HapDomainInfo'; did you mean 'HapTokenInfo'?
+[OHOS ERROR] [NINJA]     HapDomainInfo *hapDomainInfo)
+[OHOS ERROR] [NINJA]     ^~~~~~~~~~~~~
+
+Signed-off-by: Yongqin Liu <yongqin.liu66@gmail.com>
+Change-Id: I66689210f88d0bc1c73a7d93848715a1ee1fa621
+---
+ modules/common/appspawn_adapter.cpp | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/modules/common/appspawn_adapter.cpp b/modules/common/appspawn_adapter.cpp
+index aa5504c8ce5d..f602d7f51812 100644
+--- a/modules/common/appspawn_adapter.cpp
++++ b/modules/common/appspawn_adapter.cpp
+@@ -44,8 +44,10 @@ using GetPermissionFunc = int32_t (*)(void *, const char *);
+ using namespace OHOS::Security::AccessToken;
+ 
+ static const uint64_t TOKEN_ID_LOWMASK = 0xffffffff;
++#ifdef WITH_SELINUX
+ void CheckSpecialSpawnMode(const AppSpawnMgr *content, const AppSpawningCtx *property,
+     HapDomainInfo *hapDomainInfo);
++#endif
+ 
+ int SetAppAccessToken(const AppSpawnMgr *content, const AppSpawningCtx *property)
+ {
+@@ -278,7 +280,11 @@ int32_t SetEnvInfo(const AppSpawnMgr *content, const AppSpawningCtx *property)
+ 
+ int LoadSeLinuxConfig(void)
+ {
++#ifdef WITH_SELINUX
+     return HapContextLoadConfig();
++#else
++    return 0;
++#endif
+ }
+ 
+ uint32_t GetHostId(const AppSpawningCtx *property)
+@@ -299,6 +305,7 @@ uint32_t GetHostId(const AppSpawningCtx *property)
+     return hostId;
+ }
+ 
++#ifdef WITH_SELINUX
+ void CheckSpecialSpawnMode(const AppSpawnMgr *content, const AppSpawningCtx *property,
+     HapDomainInfo *hapDomainInfo)
+ {
+@@ -318,3 +325,4 @@ void CheckSpecialSpawnMode(const AppSpawnMgr *content, const AppSpawningCtx *pro
+         hapDomainInfo->hapFlags |= SELINUX_HAP_ISOLATED_RENDER;
+     }
+ }
++#endif
+-- 
+2.25.1
+
