@@ -13,6 +13,7 @@ def whitelist():
 
     addlist=["//device/soc/broadcom/bcm2711/hardware/display:display_gfx",
         "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_buffer_vdi_impl",
+        "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_buffer_vendor",
         "//device/soc/broadcom/bcm2711/hardware/display:libdisplay_composer_vdi_impl",
         "//device/soc/broadcom/common:ptgen",
         "//device/board/rpi/common/camera/pipeline_core:camera_pipeline_core",
