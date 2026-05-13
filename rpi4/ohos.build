@@ -6,9 +6,7 @@
                 "//device/board/rpi/${device_name}:rpi4_group"
             ],
             "test_list": [
-                "//device/board/rpi/system_patch:system_patch",
                 "//device/board/rpi/common:rpi_image"
-                
             ]
         }
     }
