@@ -1,0 +1,70 @@
+# Notices for Eclipse Oniro for OpenHarmony — Raspberry Pi board support
+
+This content is maintained by the Eclipse Oniro for OpenHarmony project
+(Raspberry Pi board support package).
+
+* https://projects.eclipse.org/projects/oniro.oniro4openharmony
+
+## Source Code
+
+The project maintains the following source code repository for this content:
+
+* https://github.com/eclipse-oniro4openharmony/device_board_rpi
+
+## Copyright
+
+All content is the property of the respective authors or their employers. For
+more information regarding authorship of content, please consult the listed
+source code repository logs.
+
+## Declared Project License
+
+This program and the accompanying materials are made available under the terms
+of the Apache License, Version 2.0, which is available at
+https://www.apache.org/licenses/LICENSE-2.0.
+
+    SPDX-License-Identifier: Apache-2.0
+
+## Third-party Content
+
+The Apache-2.0 licence above does not cover the content below. Each item keeps
+the licence of the project it came from.
+
+### Raspberry Pi / Broadcom boot firmware
+
+* Files:
+  * `rpi3/rpiboot/bootcode.bin`, `rpi3/rpiboot/start.elf`, `rpi3/rpiboot/fixup.dat`
+  * `rpi4/rpiboot/start4.elf`, `rpi4/rpiboot/fixup4.dat`
+* These are closed-source VideoCore GPU firmware binaries. They carry Broadcom
+  copyright notices and embed ThreadX/SMP VideoCore
+  (Copyright (c) 1996-2009 Express Logic Inc.).
+* License: the Raspberry Pi Foundation's firmware licence
+  (`LICENCE.broadcom` in https://github.com/raspberrypi/firmware). It is a
+  binary-only licence that permits redistribution **only for use on or with
+  Raspberry Pi hardware**; it is not an open-source licence and is not
+  compatible with the project's declared Apache-2.0 licence.
+* Project: https://github.com/raspberrypi/firmware
+
+> **Note for downstream distributors and for IP review:** because this firmware
+> is redistributed from this repository, anyone distributing this repository is
+> bound by that licence, including its Raspberry-Pi-hardware-only restriction.
+> Whether these files should continue to be redistributed here — rather than
+> fetched from the Raspberry Pi Foundation at build time, as the vendor blobs
+> for other boards in this project already are — is an open question for the
+> Eclipse IP due-diligence review.
+
+### Raspberry Pi Linux kernel patch
+
+* File: `common/patch/rpi.patch` (~6.4 MB, 1149 files)
+* A squashed patch derived from the Raspberry Pi Foundation's Linux kernel
+  fork, applied to the upstream OpenHarmony kernel tree at build time.
+* License: GPL-2.0-only, as the Linux kernel sources it modifies.
+* Project: https://github.com/raspberrypi/linux
+
+### Kernel configuration
+
+* Files: `common/kernel/configs/bcm2711_oh_defconfig32`,
+  `common/kernel/configs/bcm2711_oh_defconfig64`
+* Derived from Raspberry Pi kernel defconfigs.
+* License: GPL-2.0-only
+* Project: https://github.com/raspberrypi/linux
